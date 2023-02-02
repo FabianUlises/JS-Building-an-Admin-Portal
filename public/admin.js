@@ -15,13 +15,18 @@ const renderBooks = (books) => {
                 <!-- Admin book title -->
                 <h5 class="admin-book__title">${book.title}</h5>
                 <!-- Admin book input -->
-                <input type="text" value="${book.quantity}" class="admin-book__input" />
+                <input type="number" value="${book.quantity}" class="admin-book__input" id="book${book.id}" />
                 <!-- Admin book button -->
-                <button type="submit" class="btn admin-book__btn">submit</button>
+                <button onclick="updateBook(${book.id}, getInputQuantity(${book.id}).value)" type="submit" class="btn admin-book__btn">submit</button>
             </div>
             <!-- End of admin book -->
         `
     });
+};
+// Get value from input
+const getInputQuantity = (id) => {
+    // let bookInput = document.querySelector(`#book${book.id}`);
+    return document.querySelector(`#book${id}`);
 };
 // Get books from api
 const getBooks = async () => {
