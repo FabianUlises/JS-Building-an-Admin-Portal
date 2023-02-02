@@ -1,7 +1,11 @@
 // Creating and selecting elements
 const page = document.querySelector('#root');
 const booksContainer = document.createElement('div');
+const adminHeader = document.createElement('h2');
+adminHeader.classList.add('admin-header');
 booksContainer.classList.add('admin-books-container');
+adminHeader.textContent = 'Admin Portal';
+booksContainer.append(adminHeader);
 page.append(booksContainer);
 
 // Render books from api
