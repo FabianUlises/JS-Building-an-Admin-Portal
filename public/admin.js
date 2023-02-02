@@ -23,7 +23,6 @@ const renderBooks = (books) => {
         `
     });
 };
-
 // Get books from api
 const getBooks = async () => {
     // Fetch api
@@ -32,5 +31,21 @@ const getBooks = async () => {
     let books = await response.json();
     // Render books to html dom
     renderBooks(books);
+};
+// Update book quantity from admin portal
+const updateBook = async (id, quantity) => {
+    // Fetch api
+    let response = await fetch("http://localhost:3001/updateBook", {
+        // Headers
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        // Body
+        body: JSON.stringify({
+            "id": id,
+            "quantity": quantity
+        })
+    });
 };
 getBooks();
