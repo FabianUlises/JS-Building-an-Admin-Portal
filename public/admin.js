@@ -17,7 +17,9 @@ const renderBooks = (books) => {
             <!-- Start of admin book -->
             <div class="admin-book">
                 <!-- Admin book title -->
-                <h5 class="admin-book__title">${book.title}</h5>
+                <label for="book${book.id}">
+                    <h5 class="admin-book__title">${book.title}</h5>
+                </label>
                 <!-- Admin book input -->
                 <input type="number" value="${book.quantity}" class="admin-book__input" id="book${book.id}" />
                 <!-- Admin book button -->
