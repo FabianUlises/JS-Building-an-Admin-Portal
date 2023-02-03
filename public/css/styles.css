@@ -11,6 +11,10 @@
 a, a:link, a:visited, button {
     color: inherit !important;
 }
+/* Removing  scroll from number input*/
+input[type=number] {
+    -moz-appearance: textfield;
+}
 html {
     font-size: 62.5%;
 }
