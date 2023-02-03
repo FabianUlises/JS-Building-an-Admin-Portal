@@ -36,6 +36,7 @@ const getInputQuantity = (id) => {
 };
 // Get books from api
 const getBooks = async () => {
+    console.log('getting books');
     // Fetch api
     let response = await fetch('http://127.0.0.1:3001/listBooks');
     // Results from api
@@ -45,6 +46,9 @@ const getBooks = async () => {
 };
 // Update book quantity from admin portal
 const updateBook = async (id, quantity) => {
+    // Check it input number is a number greater than 0
+    if(quantity === 0 || quantity === null || quantity === '') 
+        return;
     // Fetch api
     let response = await fetch("http://localhost:3001/updateBook", {
         // Headers
