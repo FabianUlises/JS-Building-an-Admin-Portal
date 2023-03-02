@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
     res.send(books);
 });
 router.post('/', async (req, res) => {
-    res.send('posted');
-    // Book.create(req.body);
+    Book.create(req.body);
+    res.send('book created');
 });
 router.get('/:id', async (req, res) => {
     const book = Book.findById(req.params.id);
