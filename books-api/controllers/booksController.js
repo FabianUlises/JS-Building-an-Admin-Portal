@@ -4,7 +4,7 @@ const router = require('express').Router();
 const bookRouter = require('./bookRouters');
 // Routes
 router.route('/')
-    .get(bookRouter.getBooks)
+    .get(bookRouter.getAllBooks)
     .post(bookRouter.createBook)
 router.get('/:id', bookRouter.getBook);
 module.exports = router;
