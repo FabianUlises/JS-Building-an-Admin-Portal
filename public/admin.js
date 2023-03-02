@@ -11,19 +11,21 @@ page.append(booksContainer);
 // Render books from api
 const renderBooks = (books) => {
     // Looping through each book
-    books.forEach((book) => {
+    books.data.forEach((book) => {
+        const bookId = book._id;
+        console.log(bookId);
         // Adding html content to bookscontainer with book info
         booksContainer.innerHTML += `
             <!-- Start of admin book -->
             <div class="admin-book">
                 <!-- Admin book title -->
-                <label for="book${book.id}">
+                <label for="book${book.title}">
                     <h5 class="admin-book__title">${book.title}</h5>
                 </label>
                 <!-- Admin book input -->
                 <input type="number" value="${book.quantity}" class="admin-book__input" id="book${book.id}" />
                 <!-- Admin book button -->
-                <button onclick="updateBook(${book.id}, getInputQuantity(${book.id}).value)" type="submit" class="btn admin-book__btn">submit</button>
+                <button onclick="updateBook(${bookId}, getInputQuantity(${book.id}).value)" type="submit" class="btn admin-book__btn">submit</button>
             </div>
             <!-- End of admin book -->
         `
@@ -35,32 +37,35 @@ const getInputQuantity = (id) => {
     return document.querySelector(`#book${id}`);
 };
 // Get books from api
-const getBooks = async () => {
+const getAllBooks = async () => {
     console.log('getting books');
     // Fetch api
-    let response = await fetch('http://127.0.0.1:3001/listBooks');
+    let response = await fetch('https://radiant-castle-26414.herokuapp.com/api/v1/books');
     // Results from api
+    console.log(response);
     let books = await response.json();
+    console.log(books.data);
     // Render books to html dom
     renderBooks(books);
 };
 // Update book quantity from admin portal
 const updateBook = async (id, quantity) => {
-    // Check it input number is a number greater than 0
-    if(quantity === 0 || quantity === null || quantity === '') 
-        return;
-    // Fetch api
-    let response = await fetch("http://localhost:3001/updateBook", {
-        // Headers
-        method: "PATCH",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        // Body
-        body: JSON.stringify({
-            "id": id,
-            "quantity": quantity
-        })
-    });
+    console.log(id)
+    // // Check it input number is a number greater than 0
+    // if(quantity === 0 || quantity === null || quantity === '') 
+    //     return;
+    // // Fetch api
+    // let response = await fetch(`https://radiant-castle-26414.herokuapp.com/api/v1/books/${id}`, {
+    //     // Headers
+    //     method: "PATCH",
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     // Body
+    //     body: JSON.stringify({
+    //         // "id": id,
+    //         "quantity": quantity
+    //     })
+    // });
 };
-getBooks();
+getAllBooks();
