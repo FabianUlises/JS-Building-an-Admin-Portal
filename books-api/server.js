@@ -18,6 +18,6 @@ const connect = async () => {
 }
 connect();
 // Server on
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log(`server listening on port: ${process.env.PORT}`);
 });
