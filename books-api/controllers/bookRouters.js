@@ -9,6 +9,7 @@ exports.getAllBooks = async (req, res) => {
             data: books
         });
     } catch(err) {
+        // test console log
         console.log('error');
         res.status(404).json({
             status: 'fail',
@@ -24,23 +25,41 @@ exports.getBook = async (req, res) => {
             data: book
         });
     } catch(err) {
-        res.status(400).json({
+        // test console log
+        console.log('error')
+        res.status(404).json({
             status: 'fail',
-            message: `unable to find book, error: ${err}`
+            message: `Unable to find book, error: ${err}`
         });
     }
 };
 exports.createBook = async (req, res) => {
     try {
         await Book.create(req.body);
-        res.status(200).json({
+        res.status(201).json({
             status: 'success',
             message: 'Book created'
         });
     } catch(err) {
-        res.status(400).json({
+        // test console log
+        console.log('error')
+        res.status(404).json({
             status: 'fail',
-            message: `unable to create book, error: ${err}`
+            message: `Unable to create book, error: ${err}`
+        });
+    }
+};
+exports.deleteBook = async (req, res) => {
+    try {
+        await Book.findByIdAndDelete(req.params.id);
+        res.status(204).json({
+            status: 'success',
+            message: 'Book was deleted'
+        });
+    } catch(err) {
+        res.status(404).json({
+            status: 'fail',
+            message: `Unable to delete book, err: ${err}`
         });
     }
 };
